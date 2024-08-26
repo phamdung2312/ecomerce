@@ -27,7 +27,7 @@ const productAPI = {
   },
   updateProduct(id, data, access_token) {
     return axiosJWT.put(
-      `http://localhost:3000/api/product/update/${id}`,
+      `${process.env.REACT_APP_API_URL}/product/update/${id}`,
       data,
       {
         headers: { token: `Bearer ${access_token}` },
@@ -35,13 +35,16 @@ const productAPI = {
     );
   },
   deleteProduct(id, access_token) {
-    return axiosJWT.delete(`http://localhost:3000/api/product/delete/${id}`, {
-      headers: { token: `Bearer ${access_token}` },
-    });
+    return axiosJWT.delete(
+      `${process.env.REACT_APP_API_URL}/product/delete/${id}`,
+      {
+        headers: { token: `Bearer ${access_token}` },
+      }
+    );
   },
   deleteManyProduct(data, access_token) {
     return axiosJWT.post(
-      `http://localhost:3000/api/product/delete-many`,
+      `${process.env.REACT_APP_API_URL}/product/delete-many`,
       data,
       {
         headers: { token: `Bearer ${access_token}` },

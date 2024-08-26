@@ -11,12 +11,15 @@ export const userAPI = {
     return http.post("user/sign-up", body);
   },
   getUserDetail(id, access_token) {
-    return axiosJWT.get(`http://localhost:3000/api/user/user-detail/${id}`, {
-      headers: { token: `Bearer ${access_token}` },
-    });
+    return axiosJWT.get(
+      `${process.env.REACT_APP_API_URL}/user/user-detail/${id}`,
+      {
+        headers: { token: `Bearer ${access_token}` },
+      }
+    );
   },
   getAllUser(access_token) {
-    return axiosJWT.get(`http://localhost:3000/api/user/allUser`, {
+    return axiosJWT.get(`${process.env.REACT_APP_API_URL}/user/allUser`, {
       headers: { token: `Bearer ${access_token}` },
     });
   },
@@ -39,7 +42,7 @@ export const userAPI = {
   },
   updateUser(id, data, access_token) {
     return axiosJWT.put(
-      `http://localhost:3000/api/user/update-user/${id}`,
+      `${process.env.REACT_APP_API_URL}/user/update-user/${id}`,
       data,
       {
         headers: { token: `Bearer ${access_token}` },
@@ -47,13 +50,20 @@ export const userAPI = {
     );
   },
   deleteUser(id, access_token) {
-    return axiosJWT.delete(`http://localhost:3000/api/user/delete-user/${id}`, {
-      headers: { token: `Bearer ${access_token}` },
-    });
+    return axiosJWT.delete(
+      `${process.env.REACT_APP_API_URL}/user/delete-user/${id}`,
+      {
+        headers: { token: `Bearer ${access_token}` },
+      }
+    );
   },
   deleteManyUser(data, access_token) {
-    return axiosJWT.post(`http://localhost:3000/api/user/delete-many`, data, {
-      headers: { token: `Bearer ${access_token}` },
-    });
+    return axiosJWT.post(
+      `${process.env.REACT_APP_API_URL}/user/delete-many`,
+      data,
+      {
+        headers: { token: `Bearer ${access_token}` },
+      }
+    );
   },
 };

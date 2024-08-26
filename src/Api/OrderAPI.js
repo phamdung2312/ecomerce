@@ -5,18 +5,25 @@ export const axiosJWT = axios.create();
 
 export const OrderAPI = {
   paymentOrder(data, access_token) {
-    return axiosJWT.post(`http://localhost:3000/api/order/createOrder`, data, {
-      headers: { token: `Bearer ${access_token}` },
-    });
+    return axiosJWT.post(
+      `${process.env.REACT_APP_API_URL}/order/createOrder`,
+      data,
+      {
+        headers: { token: `Bearer ${access_token}` },
+      }
+    );
   },
   getAllOrder(id, access_token) {
-    return axiosJWT.get(`http://localhost:3000/api/order/get-all-order/${id}`, {
-      headers: { token: `Bearer ${access_token}` },
-    });
+    return axiosJWT.get(
+      `${process.env.REACT_APP_API_URL}/order/get-all-order/${id}`,
+      {
+        headers: { token: `Bearer ${access_token}` },
+      }
+    );
   },
   getOrderDetail(id, access_token) {
     return axiosJWT.get(
-      `http://localhost:3000/api/order/get-order-detail/${id}`,
+      `${process.env.REACT_APP_API_URL}/order/get-order-detail/${id}`,
       {
         headers: { token: `Bearer ${access_token}` },
       }
@@ -24,7 +31,7 @@ export const OrderAPI = {
   },
   cancelOrder(id, orderItems, access_token) {
     return axiosJWT.delete(
-      `http://localhost:3000/api/order/cancle-order/${id}`,
+      `${process.env.REACT_APP_API_URL}/order/cancle-order/${id}`,
       {
         data: orderItems,
       },
@@ -34,13 +41,13 @@ export const OrderAPI = {
     );
   },
   getAllOrderAdmin(access_token) {
-    return axiosJWT.get(`http://localhost:3000/api/order/getAllOrder`, {
+    return axiosJWT.get(`${process.env.REACT_APP_API_URL}/order/getAllOrder`, {
       headers: { token: `Bearer ${access_token}` },
     });
   },
   updateOrder(id, data, access_token) {
     return axiosJWT.put(
-      `http://localhost:3000/api/order/updateOrder/${id}`,
+      `${process.env.REACT_APP_API_URL}/order/updateOrder/${id}`,
       data,
       {
         headers: { token: `Bearer ${access_token}` },
