@@ -5,6 +5,7 @@ export const axiosJWT = axios.create();
 
 export const userAPI = {
   loginUser(body) {
+    console.log("process.env.REACT_APP_API_URL", process.env.REACT_APP_API_URL);
     return http.post("user/sign-in", body);
   },
   registerUser(body) {

@@ -73,9 +73,7 @@ function App() {
         <Routes>
           {counters.map((counter) => {
             const Page = counter.page;
-
             const isCheckAuth = !counter?.isPrivate || inforUser?.isAdmin;
-
             const Layout = counter.isShowHeader ? DefaultComponent : Fragment;
             return (
               <Route
