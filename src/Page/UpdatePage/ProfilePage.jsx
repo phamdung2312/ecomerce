@@ -10,11 +10,12 @@ import InputRegister from "../../componet/InputRegister/InputRegister";
 import { Button, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { userAPI } from "../../Api/UserAPI";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { updateUser } from "../../Redux/counter/UserSlide";
 import { LoadingOutlined, UploadOutlined } from "@ant-design/icons";
 import { getBase64 } from "../../utils/base64";
+import LoadingComponent from "../../componet/LoadingComponent/LoadingComponent";
 
 export default function UpdatePage() {
   const dispatch = useDispatch();
@@ -36,12 +37,11 @@ export default function UpdatePage() {
   const updateUserMutation = useMutation({
     mutationFn: (data) => {
       const { id, access_token, ...rest } = data;
-
       userAPI.updateUser(id, rest, access_token);
     },
   });
 
-  const { data, isLoading, isSuccess } = updateUserMutation;
+  const {} = updateUserMutation;
 
   const handleChangeEmail = (value) => {
     setEmail(value);
@@ -62,6 +62,7 @@ export default function UpdatePage() {
   const handleChangePhone = (value) => {
     setPhone(value);
   };
+
   const handleUpdate = () => {
     updateUserMutation.mutate(
       {
@@ -82,12 +83,14 @@ export default function UpdatePage() {
           });
           handleGetUserDetail(user.id, user.access_token);
         },
+        onSettled: () => {},
       }
     );
   };
 
   const handleGetUserDetail = async (id, access_token) => {
     const res = await userAPI.getUserDetail(id, access_token);
+    console.log("res", res);
     dispatch(updateUser(res.data));
   };
 

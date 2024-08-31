@@ -7,8 +7,17 @@ import {
 } from "./style";
 import { Checkbox, Rate } from "antd";
 import { StarFilled } from "@ant-design/icons";
+import { useState } from "react";
 
 export default function NavBarComponnet() {
+  const [valuePrice, setValuePrice] = useState();
+  const handlePrice = (e) => {
+    if (e.target.innerText === "trên 50.000") {
+      return setValuePrice(50000);
+    } else {
+      return setValuePrice(1000000);
+    }
+  };
   const render = (type, option) => {
     switch (type) {
       case "text":
@@ -31,12 +40,14 @@ export default function NavBarComponnet() {
       case "price":
         return option.map((item, index) => (
           <span
+            onClick={handlePrice}
             key={index}
             style={{
               fontSize: "16px",
               backgroundColor: "#ccc",
               padding: "0 5px",
               borderRadius: "5px",
+              cursor: "pointer",
             }}>
             {item}
           </span>
@@ -45,7 +56,7 @@ export default function NavBarComponnet() {
         return;
     }
   };
-
+  console.log("valuePrice", valuePrice);
   return (
     <div>
       <h2 style={{ display: "flex", justifyContent: "flex-start", margin: 0 }}>

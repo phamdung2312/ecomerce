@@ -65,7 +65,6 @@ export default function SignInpage() {
       },
       {
         onSuccess: async (data) => {
-          console.log("data", data);
           if (data.data.message === "SUCCESS") {
             localStorage.setItem(
               "access_token",
@@ -89,8 +88,10 @@ export default function SignInpage() {
               autoClose: 2000,
             });
             if (location.state) {
+              console.log("location.state.pathname", location.state.pathname);
               navigate(location.state.pathname);
             } else {
+              console.log("location");
               navigate("/");
             }
           }
@@ -102,11 +103,13 @@ export default function SignInpage() {
     const res = await userAPI.getUserDetail(id, access_token);
     dispatch(updateUser({ ...res?.data }));
   };
-
+  const handleNavigateForgotPage = () => {
+    navigate("/forgot-password");
+  };
   return (
     <div
       style={{
-        backgroundColor: "rgba(0, 0, 0, 0.53)",
+        backgroundColor: "#f9fbff",
         position: "fixed",
         inset: "0px",
         display: "flex",
@@ -115,6 +118,7 @@ export default function SignInpage() {
       }}>
       <div
         style={{
+          boxShadow: "5px 5px 20px 10px #ccc",
           width: "800px",
           height: "530px",
           backgroundColor: "#fff",
@@ -183,7 +187,10 @@ export default function SignInpage() {
             </ButtonComponent>
           </LoadingComponent>
           <WrapperRegisterDirect>
-            <p className="Passwod" style={{ cursor: "pointer" }}>
+            <p
+              className="Passwod"
+              style={{ cursor: "pointer" }}
+              onClick={handleNavigateForgotPage}>
               Quên mật khẩu?
             </p>
             <span>
@@ -205,7 +212,7 @@ export default function SignInpage() {
             alt="Register"></Image>
           <WrapperRegisterContent>
             <h4 className="headingContent" style={{ color: "red" }}>
-              Mua sắm tại TiKi
+              Mua sắm tại 2D
             </h4>
             <span>Siểu ưu đãi mỗi ngày</span>
           </WrapperRegisterContent>

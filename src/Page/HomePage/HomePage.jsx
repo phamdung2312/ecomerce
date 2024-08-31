@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const [limit, setLimit] = useState(6);
-  const arrTemp = ["TV", "Tủ lạnh", "Máy giặt", "Điện thoại", "Máy tính"];
   const value = useSelector((state) => state.productSearch.search);
   const valueSearch = UseDebounce(value, 1000);
   const [isLoading, setLoading] = useState(false);
@@ -35,7 +34,6 @@ export default function HomePage() {
     queryKey: ["typeProduct"],
     queryFn: () => productAPI.getTypeProduct(),
   });
-
   useEffect(() => {
     refetch();
   }, [valueSearch, refetch, limit]);
@@ -67,17 +65,17 @@ export default function HomePage() {
           </WarapperCart>
           <ButtonCart>
             <ButtonComponent
-              disabled={dataGetAllprodutc?.data.data.length < limit}
+              disabled={dataGetAllprodutc?.data?.totalProduct <= limit}
               onClick={handleLoadMore}
               style={{
                 marginTop: "10px",
                 width: "240px",
                 border:
-                  dataGetAllprodutc?.data.data.length < limit
+                  dataGetAllprodutc?.data?.totalProduct <= limit
                     ? "none"
                     : "1px solid rgb(10, 104, 255)",
                 color:
-                  dataGetAllprodutc?.data.data.length < limit
+                  dataGetAllprodutc?.data?.totalProduct <= limit
                     ? "#ccc"
                     : "rgb(10, 104, 255)",
                 fontSize: "16px",

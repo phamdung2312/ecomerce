@@ -1,6 +1,7 @@
 import LayoutPayment from "../componet/LayoutPayment/LayoutPayment";
 import AdminPage from "../Page/Admin/AdminPage/AdminPage";
 import OrderDetailAdmin from "../Page/Admin/OrderDetailAdmin/OrderDetailAdmin";
+import ForgotPassword from "../Page/ForgotPassword/ForgotPassword";
 import HomePage from "../Page/HomePage/HomePage";
 import MyOrderPage from "../Page/MyOrderPage/MyOrderPage";
 import NotFoundPgae from "../Page/NotFoundPage/NotFoundPgae";
@@ -10,6 +11,7 @@ import OrderSuccessPage from "../Page/OrderSuccessPage/OrderSuccessPage";
 import PaymentPage from "../Page/PaymentPage/PaymentPage";
 import ProductDetailsPage from "../Page/ProductDetailsPage/ProductDetailsPage";
 import ProductPage from "../Page/ProductPage/ProductPage";
+import ResetPassword from "../Page/ResetPassword/ResetPassword";
 import SignInpage from "../Page/SignInPage/SignInpage";
 import SignUpPage from "../Page/SignUpPage/SignUpPage";
 import TypeProductPage from "../Page/TypeProductPage/TypeProductPage";
@@ -58,6 +60,16 @@ export const counters = [
     path: "/order-detail-admin/:id",
     page: OrderDetailAdmin,
     isShowHeader: true,
+  },
+  {
+    path: "/forgot-password",
+    page: ForgotPassword,
+    isShowHeader: false,
+  },
+  {
+    path: "/reset-password/:id/:token",
+    page: ResetPassword,
+    isShowHeader: false,
   },
   { path: "/sign-in", page: SignInpage, isShowHeader: true },
   { path: "*", page: NotFoundPgae, isShowHeader: false },

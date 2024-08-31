@@ -39,16 +39,19 @@ function App() {
   axiosJWT.interceptors.request.use(
     async function (config) {
       // Do something before request is sent
-      const refreshToken = JSON.parse(localStorage.getItem("refresh_token"));
-      console.log("refreshToken", refreshToken);
-      const decodeRefreshToken = jwtDecode(refreshToken);
+      const refreshTokenLocal = JSON.parse(
+        localStorage.getItem("refresh_token")
+      );
+      const decodeRefreshToken = jwtDecode(refreshTokenLocal);
       const currentDay = new Date();
       const { decoded } = handleDecode();
+      console.log("decoded", decoded);
+      console.log("time", currentDay.getTime() / 1000);
       if (decoded?.exp < currentDay.getTime() / 1000) {
         if (decodeRefreshToken?.exp > currentDay.getTime() / 1000) {
-          console.log("123");
-          const res = await userAPI.refreshToken(refreshToken);
-          console.log("res", res);
+          console.log("refresh");
+          const res = await userAPI.refreshToken(refreshTokenLocal);
+
           const data = res.data.access_token;
           config.headers["token"] = `Bearer ${data}`;
         } else {

@@ -5,13 +5,15 @@ export const axiosJWT = axios.create();
 
 export const userAPI = {
   loginUser(body) {
-    console.log("process.env.REACT_APP_API_URL", process.env.REACT_APP_API_URL);
     return http.post("user/sign-in", body);
   },
   registerUser(body) {
     return http.post("user/sign-up", body);
   },
   getUserDetail(id, access_token) {
+    console.log("id", id);
+    console.log("access_token", access_token);
+
     return axiosJWT.get(
       `${process.env.REACT_APP_API_URL}/user/user-detail/${id}`,
       {
@@ -65,6 +67,18 @@ export const userAPI = {
       {
         headers: { token: `Bearer ${access_token}` },
       }
+    );
+  },
+  forgotPassword(data) {
+    return http.post(`user/forgot-password`, { data });
+  },
+  resetPassword(id, token) {
+    return http.get(`user/reset-password/${id}/${token}`);
+  },
+  updateOrder(id, data) {
+    return http.put(
+      `${process.env.REACT_APP_API_URL}/user/update-password/${id}`,
+      data
     );
   },
 };

@@ -14,6 +14,7 @@ import {
   UserOutlined,
   ArrowDownOutlined,
   ShoppingCartOutlined,
+  MenuOutlined,
 } from "@ant-design/icons";
 import InputSearchComponet from "../InputSearchComponent/InputSearchComponet";
 import { useNavigate } from "react-router-dom";
@@ -31,9 +32,9 @@ export default function HeaderComponent({ isHiddenSearch, isHiddenCart }) {
 
   const navigate = useNavigate();
   useEffect(() => {
-    setName(inforUser.name);
-    setAvatar(inforUser.avatar);
-  }, [inforUser.name, inforUser.avatar]);
+    setName(inforUser?.name);
+    setAvatar(inforUser?.avatar);
+  }, [inforUser?.name, inforUser?.avatar]);
 
   const handleChangeSignUp = () => {
     navigate("/sign-up");
@@ -45,6 +46,7 @@ export default function HeaderComponent({ isHiddenSearch, isHiddenCart }) {
     userAPI.logoutUser();
     dispatch(resetUser());
     localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     navigate("/sign-up");
   };
 
@@ -57,6 +59,8 @@ export default function HeaderComponent({ isHiddenSearch, isHiddenCart }) {
   const handleMyOrder = () => {
     navigate("/my-order");
   };
+
+  console.log("inforUser", inforUser);
 
   const content = (
     <div style={{ padding: "0px" }}>
@@ -86,6 +90,7 @@ export default function HeaderComponent({ isHiddenSearch, isHiddenCart }) {
             src={Logo}
             alt="logo"></ImageHeaders>
         </TextHeaders>
+        <MenuOutlined />
       </Col>
       <Col span={12}>
         {isHiddenSearch ? (
@@ -106,7 +111,7 @@ export default function HeaderComponent({ isHiddenSearch, isHiddenCart }) {
         <AccountHeadersWrapper>
           <Popover content={content} trigger="click">
             <div style={{ display: "flex", alignItems: "center" }}>
-              {avatar ? (
+              {avatar?.length ? (
                 <img
                   src={avatar}
                   alt={"avatar"}
@@ -119,7 +124,7 @@ export default function HeaderComponent({ isHiddenSearch, isHiddenCart }) {
               ) : (
                 <></>
               )}
-              {name && (
+              {name?.length > 0 && (
                 <div
                   style={{
                     justifyContent: "center",
@@ -141,7 +146,7 @@ export default function HeaderComponent({ isHiddenSearch, isHiddenCart }) {
                 </span>
                 <div
                   style={{
-                    margin: "0 5px",
+                    margin: "0px 5px",
                     width: "1px",
                     height: "15px",
                     background: "#ccc",

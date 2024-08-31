@@ -14,6 +14,8 @@ export const OrderAPI = {
     );
   },
   getAllOrder(id, access_token) {
+    console.log("id", id);
+    console.log("access_token", access_token);
     return axiosJWT.get(
       `${process.env.REACT_APP_API_URL}/order/get-all-order/${id}`,
       {

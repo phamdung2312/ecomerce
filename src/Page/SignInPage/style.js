@@ -41,6 +41,9 @@ export const WarpperRegistereRight = styled.div`
   );
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 export const WrapperRegisterContent = styled.div`
   color: #0b74e5;

@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 
 export default function MyOrderPage() {
   const user = useSelector((state) => state.user);
+  console.log("user", user);
   const navigate = useNavigate();
   // get order detail
   const { data, isPending, refetch } = useQuery({

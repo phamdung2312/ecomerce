@@ -62,7 +62,7 @@ export default function SignUpPage() {
   return (
     <div
       style={{
-        backgroundColor: "rgba(0, 0, 0, 0.53)",
+        backgroundColor: "#f9fbff",
         position: "fixed",
         inset: "0px",
         display: "flex",
@@ -71,6 +71,7 @@ export default function SignUpPage() {
       }}>
       <div
         style={{
+          boxShadow: "5px 5px 20px 10px #ccc",
           width: "800px",
           height: "530px",
           backgroundColor: "#fff",
@@ -147,7 +148,7 @@ export default function SignUpPage() {
             src={Register}
             alt="Register"></Image>
           <WrapperRegisterContent>
-            <h4 className="headingContent">Mua sắm tại TiKi</h4>
+            <h4 className="headingContent">Mua sắm tại 2D</h4>
             <span>Siểu ưu đãi mỗi ngày</span>
           </WrapperRegisterContent>
         </WarpperRegistereRight>

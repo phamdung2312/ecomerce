@@ -39,6 +39,8 @@ export default function TypeProductPage() {
     setPanigate({ ...panigate, page: current - 1, limit: pageSize });
   };
 
+  console.log("dataTypeProduct", dataTypeProduct);
+
   return (
     <LoadingComponent spinning={isPendingProductType}>
       <WrapperTypeProduct>
